@@ -7,12 +7,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static spark.Spark.get;
-
+import org.safmoring.dao.Hero_Dao;
+import org.safmoring.dao.Squad_Dao;
+import org.safmoring.model.Squad;
 public class Squad_controller {
-    private final SquadDao squadDao;
-    private final HeroDao heroDao;
+    private final Squad_Dao squadDao;
+    private final Hero_Dao heroDao;
 
-    public Squad_controller(SquadDao squadDao, HeroDao heroDao) {
+    public Squad_controller(Squad_Dao squadDao, Hero_Dao heroDao) {
         this.squadDao = squadDao;
         this.heroDao = heroDao;
     }
