@@ -39,4 +39,19 @@ public class Hero_Dao {
         }
         return heroes;
     }
+
+    public void updateHero(Hero hero) {
+        try (Connection connection = sql2o.open()) {
+            String query = "UPDATE heroes SET name = :name, age = :age, power = :power, weakness = :weakness WHERE id = :id";
+            connection.createQuery(query)
+                    .addParameter("name", hero.getName())
+                    .addParameter("age", hero.getAge())
+                    .addParameter("power", hero.getPower())
+                    .addParameter("weakness", hero.getWeakness())
+                    .addParameter("id", hero.getId())
+                    .executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
