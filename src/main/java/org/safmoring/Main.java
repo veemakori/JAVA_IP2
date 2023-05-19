@@ -11,8 +11,7 @@ import spark.template.handlebars.HandlebarsTemplateEngine;
 import java.util.HashMap;
 import java.util.Map;
 
-import static spark.Spark.get;
-import static spark.Spark.staticFiles;
+import static spark.Spark.*;
 
 public class Main {
 
@@ -42,5 +41,33 @@ public class Main {
             Map<String, Object> model = new HashMap<>();
             return new ModelAndView(model, "heroes.hbs");
         }, templateEngine);
+
+        // Create a new hero route
+        post("/heroes", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            String name = req.queryParams("name");
+            int age = Integer.parseInt(req.queryParams("age"));
+            String power = req.queryParams("power");
+            String weakness = req.queryParams("weakness");
+
+            Hero hero = new Hero(name, age, power, weakness);
+            heroDao.addHero(hero);
+            res.redirect("/");
+            return null;
+//            return new ModelAndView(model, "heroes.hbs");
+        });
+
+        // Serve static CSS and JS files
+        get("/css/*", (req, res) -> {
+            String path = req.pathInfo();
+            res.type("text/css");
+            return Main.class.getResourceAsStream("/public" + path);
+        });
+
+        get("/js/*", (req, res) -> {
+            String path = req.pathInfo();
+            res.type("text/javascript");
+            return Main.class.getResourceAsStream("/public" + path);
+        });
     }
 }
