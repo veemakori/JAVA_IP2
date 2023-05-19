@@ -39,7 +39,7 @@ public class Main {
 
         get("/new_hero", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            return new ModelAndView(model, "heroes.hbs");
+            return new ModelAndView(model, "create_new_hero.hbs");
         }, templateEngine);
 
         // Create a new hero route

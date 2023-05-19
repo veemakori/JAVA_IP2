@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Create Superhero</title>
+    <link rel="stylesheet" href="/public/css/styles.css">
+</head>
+<body class="scheme-2">
+
+<div class="container">
+    <h1>Create Superhero</h1>
+
+    <div class="hero-card">
+        <form action="/heroes" method="POST">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text">
+            <br>
+            <label for="age">Age</label>
+            <input id="age" name="age" type="text">
+            <br>
+            <label for="power">Power</label>
+            <input id="power" name="power" type="text">
+            <br>
+            <label for="weakness">Weakness</label>
+            <input id="weakness" name="weakness" type="text">
+            <br>
+            <button class="button" type="submit">Create Hero</button>
+        </form>
+    </div>
+
+    <a href="/">Back to Home</a>
+</div>
+
+</body>
+</html>
