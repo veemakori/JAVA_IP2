@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Create Superhero</title>
+    <link rel="stylesheet" href="/public/css/styles.css">
+</head>
+<body class="scheme-2">
+
+<div class="container">
+    <h1>Create Superhero</h1>
+
+    <div class="hero-card">
+        <form action="/squads" method="POST">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text">
+            <br>
+            <label for="maxSize">Max size</label>
+            <input id="maxSize" name="maxSize" type="text">
+            <br>
+
+            <label for="cause">Cause</label>
+            <input id="cause" name="cause" type="text">
+            <br>
+            <br>
+            <button class="button" type="submit">Create Squad</button>
+        </form>
+    </div>
+
+    <a href="/">Back to Home</a>
+</div>
+
+</body>
+</html>

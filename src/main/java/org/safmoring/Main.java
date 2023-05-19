@@ -27,16 +27,17 @@ public class Main {
 
         // Set up the HeroDao and SquadDao
         Hero_Dao heroDao = new Hero_Dao(databaseConnector.getSql2o());
-//        Squad_Dao squadDao = new Squad_Dao(databaseConnector.getSql2o());
+        Squad_Dao squadDao = new Squad_Dao(databaseConnector.getSql2o());
 
         // Home page route
         get("/", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             model.put("heroes", heroDao.getAllHeroes());
-//            model.put("squads", squadDao.getAllSquads());
+            model.put("squads", squadDao.getAllSquads());
             return new ModelAndView(model, "index.hbs");
         }, templateEngine);
 
+        // access the create hero page
         get("/new_hero", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             return new ModelAndView(model, "create_new_hero.hbs");
@@ -55,6 +56,25 @@ public class Main {
             res.redirect("/");
             return null;
 //            return new ModelAndView(model, "heroes.hbs");
+        });
+
+        // access the create squad page
+        get("/new_squad", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            return new ModelAndView(model, "create_new_squad.hbs");
+        }, templateEngine);
+
+        // Create a new squad route
+        post("/squads", (req, res) -> {
+            String name = req.queryParams("name");
+            int maxSize = Integer.parseInt(req.queryParams("maxSize"));
+            String cause = req.queryParams("cause");
+
+            Squad squad = new Squad(name, maxSize, cause);
+            squadDao.addSquad(squad);
+
+            res.redirect("/");
+            return null;
         });
 
         // Serve static CSS and JS files
