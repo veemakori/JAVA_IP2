@@ -65,5 +65,17 @@ public class Hero_Dao {
             e.printStackTrace();
         }
     }
+    public Hero findHeroById(int id) {
+        Hero hero = null;
+        try (Connection connection = sql2o.open()) {
+            String query = "SELECT * FROM heroes WHERE id = :id";
+            hero = connection.createQuery(query)
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Hero.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return hero;
+    }
 
 }
