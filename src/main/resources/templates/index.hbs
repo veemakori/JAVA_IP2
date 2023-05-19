@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/public/css/styles.css">
+    <title>Hero Squad App</title>
+</head>
+<body>
+<h1>Welcome to Hero Squad App!</h1>
+<ul class="nav nav-tabs">
+   <li role="presentation" class="active"><a href="#">Home</a></li>
+   <li role="presentation"><a href="/heroes">See All Posts</a></li>
+   <li role="presentation"><a href="/posts/new">Add a New Post</a></li>
+</ul
+<h2>Heroes</h2>
+<ul>
+    {{#each heroes}}
+        <li>
+            <strong>Name:</strong> {{name}} <br>
+            <strong>Age:</strong> {{age}} <br>
+            <strong>Special Power:</strong> {{specialPower}} <br>
+            <strong>Weakness:</strong> {{weakness}}
+        </li>
+    {{/each}}
+</ul>
+
+<h2>Squads</h2>
+<ul>
+    {{#each squads}}
+        <li>
+            <strong>Name:</strong> {{name}} <br>
+            <strong>Cause:</strong> {{cause}}
+        </li>
+    {{/each}}
+</ul>
+
+<script src="/public/js/main.js">
+    // Access the data and manipulate the DOM as needed
+    var heroesData = {{heroesJson}};
+    var squadsData = {{squadsJson}};
+
+    // Compile the Handlebars template
+    var templateSource = document.getElementById("heroes-template").innerHTML;
+    var template = Handlebars.compile(templateSource);
+
+    // Render the heroes data using the template
+    var heroesHtml = template({ heroes: heroesData });
+    document.getElementById("heroes-list").innerHTML = heroesHtml;
+
+    // Compile the Handlebars template for squads
+    var squadsTemplateSource = document.getElementById("squads-template").innerHTML;
+    var squadsTemplate = Handlebars.compile(squadsTemplateSource);
+
+    // Render the squads data using the template
+    var squadsHtml = squadsTemplate({ squads: squadsData });
+    document.getElementById("squads-list").innerHTML = squadsHtml;
+
+<!-- Handlebars template for heroes -->
+
+    {{#each heroes}}
+    <li>
+        <strong>Name:</strong> {{name}} <br>
+        <strong>Age:</strong> {{age}} <br>
+        <strong>Special Power:</strong> {{specialPower}} <br>
+        <strong>Weakness:</strong> {{weakness}}
+    </li>
+    {{/each}}
+
+<!-- Handlebars template for squads -->
+
+    {{#each squads}}
+    <li>
+        <strong>Name:</strong> {{name}} <br>
+        <strong>Cause:</strong> {{cause}}
+    </li>
+    {{/each}}
+</script>
+</body>
+</html>
