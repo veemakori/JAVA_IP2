@@ -40,4 +40,26 @@ public class Squad_Dao {
         }
     }
 
+    public void updateSquad(int id, Squad squad) {
+        String sql = "UPDATE squads SET name = :name, max_size = :maxSize, cause = :cause WHERE id = :id";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("name", squad.getName())
+                    .addParameter("maxSize", squad.getMaxSize())
+                    .addParameter("cause", squad.getCause())
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }
+    }
+
+    public Squad findSquadById(int id) {
+        String sql = "SELECT * FROM squads WHERE id = :id";
+        try (Connection con = sql2o.open()) {
+            return con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Squad.class);
+        }
+    }
+
+
 }
