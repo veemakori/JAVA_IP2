@@ -7,7 +7,7 @@ import org.safmoring.dao.Hero_Dao;
 import org.safmoring.model.Hero;
 public class Hero_controller {
     private final Hero_Dao heroDao;
-    public Hero_controller(HeroDao heroDao) {
+    public Hero_controller(Hero_Dao heroDao) {
         this.heroDao = heroDao;
     }
     public Route addHero() {
