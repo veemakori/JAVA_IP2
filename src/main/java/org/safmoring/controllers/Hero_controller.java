@@ -3,9 +3,13 @@ package org.safmoring.controllers;
 import spark.Request;
 import spark.Response;
 import spark.Route;
-
+import org.safmoring.dao.Hero_Dao;
+import org.safmoring.model.Hero;
 public class Hero_controller {
-
+    private final Hero_Dao heroDao;
+    public Hero_controller(HeroDao heroDao) {
+        this.heroDao = heroDao;
+    }
     public Route addHero() {
         return (Request req, Response res) -> {
             String name = req.queryParams("name");
