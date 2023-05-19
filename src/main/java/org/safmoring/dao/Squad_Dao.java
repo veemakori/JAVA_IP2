@@ -31,4 +31,13 @@ public class Squad_Dao {
                     .executeAndFetch(Squad.class);
         }
     }
+    public void deleteSquad(int id) {
+        String sql = "DELETE FROM squads WHERE id = :id";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }
+    }
+
 }
