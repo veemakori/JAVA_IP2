@@ -23,18 +23,18 @@ public class Main {
         HandlebarsTemplateEngine templateEngine = new HandlebarsTemplateEngine();
 
         // Set up the database connector
-        DatabaseConnector databaseConnector = new DatabaseConnector("jdbc:postgresql://localhost:5432/superhero_recruitment", "postgres", "Nyangau92");
+        db_connection databaseConnector = new db_connection("jdbc:postgresql://localhost:5432/superhero_recruitment", "postgres", "Nyangau92");
         databaseConnector.init();
 
         // Set up the HeroDao and SquadDao
-        HeroDao heroDao = new HeroDao(databaseConnector.getSql2o());
-        SquadDao squadDao = new SquadDao(databaseConnector.getSql2o());
+        Hero_Dao heroDao = new Hero_Dao(databaseConnector.getSql2o());
+//        Squad_Dao squadDao = new Squad_Dao(databaseConnector.getSql2o());
 
         // Home page route
         get("/", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             model.put("heroes", heroDao.getAllHeroes());
-            model.put("squads", squadDao.getAllSquads());
+//            model.put("squads", squadDao.getAllSquads());
             return new ModelAndView(model, "index.hbs");
         }, templateEngine);
     }

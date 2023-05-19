@@ -4,6 +4,10 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 import org.safmoring.model.Hero;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Hero_Dao {
     private final Sql2o sql2o;
 
@@ -23,5 +27,16 @@ public class Hero_Dao {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Hero> getAllHeroes() {
+        List<Hero> heroes = new ArrayList<>();
+        try (Connection connection = sql2o.open()) {
+            String query = "SELECT * FROM heroes";
+            heroes = connection.createQuery(query).executeAndFetch(Hero.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return heroes;
     }
 }
