@@ -54,4 +54,16 @@ public class Hero_Dao {
             e.printStackTrace();
         }
     }
+
+    public void deleteHero(int id) {
+        try (Connection connection = sql2o.open()) {
+            String query = "DELETE FROM heroes WHERE id = :id";
+            connection.createQuery(query)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
