@@ -22,7 +22,7 @@ public class Main {
         HandlebarsTemplateEngine templateEngine = new HandlebarsTemplateEngine();
 
         // Set up the database connector
-        db_connection databaseConnector = new db_connection("jdbc:postgresql://localhost:5432/superhero_recruitment", "postgres", "Nyangau92");
+        db_connection databaseConnector = new db_connection("jdbc:postgresql://localhost:5432/superheroes", "postgres", "Nyangau92");
         databaseConnector.init();
 
         // Set up the HeroDao and SquadDao
