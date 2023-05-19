@@ -37,5 +37,10 @@ public class Main {
 //            model.put("squads", squadDao.getAllSquads());
             return new ModelAndView(model, "index.hbs");
         }, templateEngine);
+
+        get("/new_hero", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            return new ModelAndView(model, "heroes.hbs");
+        }, templateEngine);
     }
 }
